@@ -175,7 +175,6 @@
     <Compile Include="AllegroClassLibrary\Web\WebControls\StyledButton.cs" />
     <Compile Include="AllegroClassLibrary\Web\WebControls\TabSelector.cs" />
     <Compile Include="AllegroClassLibrary\Web\WebControls\TimeBox.cs" />
-    <Compile Include="AllegroMessage.cs" />
     <Compile Include="BL_SC_MM_05.cs" />
     <Compile Include="BL_SC_MM_05_S01.cs" />
     <Compile Include="BL_SC_MM_05_S02.cs" />

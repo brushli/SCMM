@@ -91,7 +91,7 @@
 									</cc1:EncodeLabel>
 								</td>
 								<td class="bd_item_ttl_bg" style="width: 95px;"><%-- 仕入先伝票番号 --%><cc1:EncodeLabel runat="server" id="SuplSlipNoLabel" Text="<%$ Resources:Web, SC_CS006219 %>" /></td>
-								<td class="bd_item_val_bg" style="width: 100px;">
+								<td class="bd_item_val_bg" colspan="2" style="width: 100px;">
 									<cc1:CustomTextBox id="SuplSlipNo" runat="server"
 										ClientFocusScript="defaultFunctionKeyHeader"
 										NextControlID="DeptCodeText"
@@ -138,7 +138,7 @@
 								<td class="bd_item_ttl_bg">
 									<cc1:EncodeLabel id="ProjTitleLabel" runat="server" Text="<%$ Resources:Web, SC_CS000232 %>" /><%-- プロジェクト --%>
 								</td>
-								<td class="bd_item_val_bg" colspan="4">
+								<td class="bd_item_val_bg" colspan="5">
 									<cc1:CustomTextBox id="ProjCodeText" runat="server"
 										ClientFocusScript="defaultFunctionKeyHeader"
 										NextControlID="PoDateFromText"
@@ -183,7 +183,7 @@
 									</cc1:CustomTextBox>
 								</td>
 								<td class="bd_item_ttl_bg"><%-- 請求書番号 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001342 %>" /></td>
-								<td class="bd_item_val_bg" colspan="4">
+								<td class="bd_item_val_bg" colspan="5">
 									<cc1:CustomTextBox id="SuplBillSlipNoText" runat="server"
 										ClientFocusScript="defaultFunctionKeyHeader"
 										Width="145px" MaxLength="15"
@@ -216,7 +216,7 @@
 									</cc1:CustomTextBox>
 								</td>
 								<td class="bd_item_ttl_bg"><%-- 発生元 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS006220 %>" /></td>
-								<td class="bd_item_val_bg">
+								<td class="bd_item_val_bg" colspan="2">
 									<cc1:CustomDropDownList id="OriginTypeDrop" runat="server"
 										Width="78px"
 										NextControlID="PuModeTypeDrop"
@@ -252,7 +252,7 @@
 								<td class="bd_item_ttl_bg" style="width: 95px">
 									<cc1:EncodeLabel id="PriceUndecidedTitleLabel" runat="server"></cc1:EncodeLabel>
 								</td>
-								<td class="bd_item_val_bg" colspan="2">
+								<td class="bd_item_val_bg" colspan="3">
 									<cc1:CustomRadioButtonList id="PriceUndecidedRadio" runat="server"
 										ClientFocusScript="defaultFunctionKeyHeader" 
 										NextControlID="HoldFlgRadio" Width="170px">
@@ -298,7 +298,7 @@
 									</cc1:CustomRadioButtonList>
 								</td>
 								<td class="bd_item_ttl_bg"><%-- 入力者 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001657 %>" /></td>
-								<td class="bd_item_val_bg" colspan="2">
+								<td class="bd_item_val_bg">
 									<cc1:CustomTextBox id="InputEmpCodeText" runat="server"
 										Width="95px"
 										ClientFocusScript="defaultFunctionKeyHeader"
@@ -311,8 +311,7 @@
 									<cc1:EncodeLabel id="InputEmpNameLabel" runat="server">
 									</cc1:EncodeLabel>
 								</td>
-
-								<td class="bd_item_ttl_bg"><%-- 運送業者 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001657 %>" /></td>
+								<td class="bd_item_ttl_bg">運送業者</td>
 								<td class="bd_item_val_bg">
 									<cc1:CustomDropDownList id="CarrierDrop" runat="server"
 										ClientFocusScript="defaultFunctionKeyHeader">

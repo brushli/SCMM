@@ -105,11 +105,12 @@ namespace Infocom.Allegro.SC
 		protected string originType = string.Empty; //発生元
 // 管理番号 K25680 To
 // 管理番号K27154 From
-		protected string dealTypeCode		= string.Empty;		// 取引区分コード
-// 管理番号K27154 To
+		protected string dealTypeCode		= string.Empty;     // 取引区分コード
+		protected string carrierCode = string.Empty;       // 運送業者
+														   // 管理番号K27154 To
 		#endregion
 
-// 管理番号K27057 From
+		// 管理番号K27057 From
 		#region Private Fields
 		private IF_CM_MS_CustomItem customItemHead = new IF_CM_MS_CustomItem();
 		private IF_CM_MS_CustomItem customItemDtil = new IF_CM_MS_CustomItem();
@@ -350,9 +351,14 @@ namespace Infocom.Allegro.SC
 			get {return dealTypeCode;}
 			set {dealTypeCode = ValidateString(MultiLanguage.Get("SC_CS006354"), value, false, 3, CheckOption.SingleByte);}	//取引区分
 		}
-// 管理番号K27154 To
+		public virtual string CarrierCode
+		{
+			get { return carrierCode; }
+			set { carrierCode = value;  }   
+		}
+		// 管理番号K27154 To
 
-// 管理番号K27057 From
+		// 管理番号K27057 From
 		/// <summary>
 		/// 汎用項目共通部品IF(ヘッダ)
 		/// </summary>

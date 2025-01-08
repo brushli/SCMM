@@ -137,7 +137,8 @@ namespace Infocom.Allegro.SC
 		protected Infocom.Allegro.Web.WebControls.CustomDropDownList PuModeTypeDrop;
 // 管理番号K27058 From
 		protected Infocom.Allegro.Web.WebControls.CustomDropDownList BookBasisTypeDrop;
-// 管理番号K27058 To
+		protected Infocom.Allegro.Web.WebControls.CustomDropDownList CarrierDrop;
+		// 管理番号K27058 To
 		protected Infocom.Allegro.Web.WebControls.CustomRadioButtonList RedSlipRadio;
 // 管理番号 B13878 From
 		protected Infocom.Allegro.Web.WebControls.EncodeLabel PriceUndecidedTitleLabel;
@@ -377,6 +378,7 @@ namespace Infocom.Allegro.SC
 			setPuModeTypeDrop();
 // 管理番号K27058 From
 			setBookBasisTypeDrop();
+			setCarrierDrop();
 // 管理番号K27058 To
 // 管理番号 K25680 From
 			setOriginTypeDrop();
@@ -540,6 +542,7 @@ namespace Infocom.Allegro.SC
 // 管理番号 K25680 To
 // 管理番号K27154 From
 			searchConditionTerget.DealTypeCode = DealTypeDrop.SelectedValue; //取引区分
+			searchConditionTerget.CarrierCode = CarrierDrop.SelectedValue;//
 // 管理番号K27154 To
 // 管理番号K27057 From
 			CustomItem.SetValidateInfo(CommonData, HeadCustomItemPanel, searchConditionTerget.CustomItemHead);
@@ -1468,9 +1471,9 @@ namespace Infocom.Allegro.SC
 		/// <summary>
 		/// 運送業者初期設定
 		/// </summary>
-		private void setBookBasisTypeDrop()
+		private void setCarrierDrop()
 		{
-			MultipurposeType.GetBookBasisTypeListDataSource(CommonData, CarrierDrop, "5", true, true, true);		
+			BL_SC_MM_05_S01.GetCarriers(CommonData, CarrierDrop);		
 		}
 		// 管理番号K27058 To
 		private void setApprovalStatusTypeDrop()

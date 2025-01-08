@@ -116,9 +116,11 @@ namespace Infocom.Allegro.SC
 				sb.Append("END AS [GRAND_TTL], ");
 // 管理番号 B22516 From
 				sb.Append("[PU].[DT_TYPE], ");
-// 管理番号 B22516 To
-// 管理番号 B23181 From
-				if(searchCondition.ApModuleFlg)
+				sb.Append("[PU].[DT_TYPE], ");
+				sb.Append("[CARRIER].[CARRIER_NAME],[CARRIER].[CARRIER_CODE] ");
+				// 管理番号 B22516 To
+				// 管理番号 B23181 From
+				if (searchCondition.ApModuleFlg)
 				{
 // 管理番号 B23181 To
 // 管理番号 B22494 From
@@ -608,6 +610,15 @@ namespace Infocom.Allegro.SC
 				sb.Append("AS [NEWEST_PUD] WITH (NOLOCK) ON ");
 // 管理番号 K22270 To
 				sb.Append("[NEWEST_PUD].[PU_NO] = [NEWEST_PU].[PU_NO]");
+				//加入运输
+				sb.Append(" LEFT OUTER JOIN ");
+				sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_ADD]"));
+				sb.Append("AS [NEWEST_PUA] WITH (NOLOCK) ON ");
+				sb.Append("[NEWEST_PUA].[PU_NO] = [NEWEST_PU].[PU_NO]");
+				sb.Append(" LEFT OUTER JOIN [R_1_1_0_SC].[dbo].[CARRIER]");
+				sb.Append("AS [NEWEST_CAR] WITH (NOLOCK) ON ");
+				sb.Append("[NEWEST_CAR].[CARRIER_CODE] = [NEWEST_PUA].[CARRIER_CODE]");
+				wpb.AddFilter("[NEWEST_PUA].[CARRIER_CODE]", SearchOperator.Equal, searchCondition.CarrierCode);
 				sb.Append(" LEFT OUTER JOIN ");
 				sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PO]"));
 // 管理番号 K22270 From
@@ -635,6 +646,7 @@ namespace Infocom.Allegro.SC
 				wpb.AddFilter("[NEWEST_PU].[PU_NO]",		SearchOperator.LessThanEqual, searchCondition.PuNoTo);
 				wpb.AddFilter("[NEWEST_PU].[SUPL_CODE]",	SearchOperator.Equal, searchCondition.SuplCode);
 				wpb.AddFilter("[NEWEST_PU].[SUPL_SBNO]",	SearchOperator.Equal, searchCondition.SuplSbNo);
+
 				//配下部門を含まない場合
 				if (searchCondition.SubDeptSearchFlg.Equals("0"))
 				{
@@ -822,7 +834,36 @@ namespace Infocom.Allegro.SC
 			da.Fill(dt);
 			return dt;
 		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="commonData"></param>
+		/// <param name="control"></param>
+		/// <returns></returns>
+		public static DataTable GetCarriers(CommonData commonData, Web.WebControls.CustomDropDownList control)
+		{
+			StringBuilder sb = new StringBuilder();
+			sb.Append("SELECT CARRIER_CODE,CARRIER_NAME FROM [R_1_1_0_SC].[dbo].[CARRIER]");
+			SqlConnection cn = new SqlConnection(DBAccess.GetConnectionString(commonData));
+			DataTable dt=new DataTable ();
+			cn.Open();
+			SqlDataAdapterWrapper da = new SqlDataAdapterWrapper(sb.ToString(), cn);
+			DBTimeout.setTimeout(da, commonData);
+			try
+			{
+				da.Fill(dt);
+				control.DataSource = dt;
+				control.DataValueField = "CARRIER_CODE";
+				control.DataTextField = "CARRIER_NAME";
+				control.DataBind();
+			}
+			finally
+			{
+				cn.Close();
+			}
+			return dt;
 
+		}
 		public static DataTable Select(IF_SC_MM_05_S01_SearchCondition searchCondition, CommonData commonData, bool selectType)
 		{
 //			SqlConnection cn = new SqlConnection(DBAccess.GetConnectionString(commonData.CompCode)); //K24546
