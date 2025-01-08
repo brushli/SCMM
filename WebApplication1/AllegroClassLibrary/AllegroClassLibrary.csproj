@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{666275FC-F363-47A3-838C-C2968CBF30AD}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>AllegroClassLibrary</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Flow</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Infocom.Allegro</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\..\..\bin\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>..\..\..\bin\AllegroClassLibrary.xml</DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>1570,1571,1572,1573,1587,1591,1734</NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto">
+      <Name>BouncyCastle.Crypto</Name>
+      <HintPath>..\..\..\bin\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Gcef.Data.DataEngine">
+      <Name>Gcef.Data.DataEngine</Name>
+      <HintPath>..\..\..\bin\Gcef.Data.DataEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Gcef.Data.ExpressionInfo">
+      <Name>Gcef.Data.ExpressionInfo</Name>
+      <HintPath>..\..\..\bin\Gcef.Data.ExpressionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Gcef.Data.VBFunctionLib">
+      <Name>Gcef.Data.VBFunctionLib</Name>
+      <HintPath>..\..\..\bin\Gcef.Data.VBFunctionLib.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Chart">
+      <Name>GrapeCity.ActiveReports.Chart</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Chart.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.DataProviders">
+      <Name>GrapeCity.ActiveReports.Core.DataProviders</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.DataProviders.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Drawing.Gc">
+      <Name>GrapeCity.ActiveReports.Core.Drawing.Gc</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Drawing.Gc.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Drawing.Gdi">
+      <Name>GrapeCity.ActiveReports.Core.Drawing.Gdi</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Drawing.Gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Export.Image.Page">
+      <Name>GrapeCity.ActiveReports.Core.Export.Image.Page</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Export.Image.Page.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Export.Pdf.Page">
+      <Name>GrapeCity.ActiveReports.Core.Export.Pdf.Page</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Export.Pdf.Page.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Rdl">
+      <Name>GrapeCity.ActiveReports.Core.Rdl</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Rdl.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Core.Rendering">
+      <Name>GrapeCity.ActiveReports.Core.Rendering</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Core.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports">
+      <Name>GrapeCity.ActiveReports</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Document">
+      <Name>GrapeCity.ActiveReports.Document</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Document.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Image">
+      <Name>GrapeCity.ActiveReports.Export.Image</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Export.Image.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf">
+      <Name>GrapeCity.ActiveReports.Export.Pdf</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Export.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Rdf">
+      <Name>GrapeCity.ActiveReports.Export.Rdf</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Export.Rdf.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Viewer.Win">
+      <Name>GrapeCity.ActiveReports.Viewer.Win</Name>
+      <HintPath>..\..\..\bin\GrapeCity.ActiveReports.Viewer.Win.dll</HintPath>
+    </Reference>
+    <Reference Include="Grapecity.DataVisualization">
+      <Name>Grapecity.DataVisualization</Name>
+      <HintPath>..\..\..\bin\Grapecity.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Documents.Common">
+      <Name>GrapeCity.Documents.Common</Name>
+      <HintPath>..\..\..\bin\GrapeCity.Documents.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Documents.Common.Windows">
+      <Name>GrapeCity.Documents.Common.Windows</Name>
+      <HintPath>..\..\..\bin\GrapeCity.Documents.Common.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Documents.DX.Windows">
+      <Name>GrapeCity.Documents.DX.Windows</Name>
+      <HintPath>..\..\..\bin\GrapeCity.Documents.DX.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Documents.Imaging">
+      <Name>GrapeCity.Documents.Imaging</Name>
+      <HintPath>..\..\..\bin\GrapeCity.Documents.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Documents.Pdf">
+      <Name>GrapeCity.Documents.Pdf</Name>
+      <HintPath>..\..\..\bin\GrapeCity.Documents.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Name>Newtonsoft.Json</Name>
+      <HintPath>..\..\..\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <Name>System.Buffers</Name>
+      <HintPath>..\..\..\bin\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <Name>System.Memory</Name>
+      <HintPath>..\..\..\bin\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <Name>System.Numerics.Vectors</Name>
+      <HintPath>..\..\..\bin\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <Name>System.Runtime.CompilerServices.Unsafe</Name>
+      <HintPath>..\..\..\bin\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <Name>System.ValueTuple</Name>
+      <HintPath>..\..\..\bin\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>System.Management</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <Name>System.Runtime.Serialization</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Name>System.Xml.Linq</Name>
+    </Reference>
+    <Reference Include="Infocom.Allegro.MyComp">
+      <Name>Infocom.Allegro.MyComp</Name>
+      <HintPath>..\..\..\bin\Infocom.Allegro.MyComp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Name>System.Configuration</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <Name>System.Core</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllegroException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AllegroLog.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AllegroLogProgram.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AllegroMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\ConvertDBData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\ConvertStringData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\DBAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\DBTimeout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\DMAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\MNAccess.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BL\SqlClient\SqlCommandWrapper.cs" />
+    <Compile Include="BL\SqlClient\SqlDataAdapterWrapper.cs" />
+    <Compile Include="BL\SqlClient\SqlString.cs" />
+    <Compile Include="BL\SqlClient\WherePhraseBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CM\MS\RateSaerchOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CM\MS\SttleMthdSearchOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonData.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ComponetModel\Attribute.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DateRange.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DateValidator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExceptionLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FI\AP\ApTrnsfrSearchOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FI\AR\ArTrnsfrSearchOption.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IF\ForSearch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IF\IFBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IF\NumericChecker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IF\StringChecker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MessageLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MultiLanguage.cs">
+    </Compile>
+    <Compile Include="MultiLanguageReportFont.cs" />
+    <Compile Include="Report\Enums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Report\RptCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="StringFormat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TraceLevel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TypeLength.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Configuration\DebugSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\ControlFormat.cs" />
+    <Compile Include="Web\Enums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Html\HtmlConverterBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Html\HtmlMultilineText.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Html\HtmlNoticeMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\Html\HtmlParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHandler\FileUploadHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHandler\TerminatePageHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\HttpHandler\TokenHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\InputPageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\NumberBoxPreset.cs" />
+    <Compile Include="Web\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\StateBagDateTime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\TokenManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\StartupScriptManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\AllegroControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\BaseMenuNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\BottomLevelMenuNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\ClickableDataGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\ClickablePanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CurrencyLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CurrencyList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomCalendar.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomCheckBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomDataGrid.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomDropDownList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomImage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomImageButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomItemPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomLinkButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomRadioButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomRadioButtonList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomTextBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\CustomTreeView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\DateBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\EncodeLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\Enums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\FileUploader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\Header.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\IAllegroContorl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\IBlurHandleable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\IEnterKeyDownHandleable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\IKeyDownHandleable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\Menu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\MenuNodeCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\MiddleLevelMenuNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\MonthBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\NubmerBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\RadioButtonSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\StyledButton.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\TabSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\WebControls\TimeBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
