@@ -116,8 +116,7 @@ namespace Infocom.Allegro.SC
 				sb.Append("END AS [GRAND_TTL], ");
 // 管理番号 B22516 From
 				sb.Append("[PU].[DT_TYPE], ");
-				sb.Append("[PU].[DT_TYPE], ");
-				sb.Append("[CARRIER].[CARRIER_NAME],[CARRIER].[CARRIER_CODE] ");
+				sb.Append("[CARRIER].[CARRIER_NAME],[CARRIER].[CARRIER_CODE], ");
 				// 管理番号 B22516 To
 				// 管理番号 B23181 From
 				if (searchCondition.ApModuleFlg)
@@ -806,7 +805,16 @@ namespace Infocom.Allegro.SC
 			}
 
 			DataTable dt = new DataTable();
-			SqlDataAdapterWrapper da = new SqlDataAdapterWrapper(sb.ToSqlPString(), cn);	// 管理番号K27230
+			SqlDataAdapterWrapper da;
+
+			try
+            {
+				da = new SqlDataAdapterWrapper(sb.ToSqlPString(), cn);    // 管理番号K27230
+			}
+            catch (Exception)
+            {
+                throw new Exception(sb.ToSqlPString().ToString());
+            }
 // 管理番号 P18435 From
 			DBTimeout.setTimeout(da, commonData);
 // 管理番号 P18435 To
@@ -873,6 +881,10 @@ namespace Infocom.Allegro.SC
 			try
 			{
 				dt = Select(searchCondition, commonData, cn, selectType);
+			}
+			catch(Exception ex)
+			{
+				throw new Exception(ex.Message);
 			}
 			finally
 			{

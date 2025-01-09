@@ -1012,49 +1012,56 @@ namespace Infocom.Allegro.SC
 				}
 				else
 				{
-					//しきい値のチェック
-					DataTable cntDt = BL_SC_MM_05_S01.Select(tmpSearchCondition, CommonData, false);
-					//（作成したテンポラリのSeachConditionを使って、件数を取得します。通常のBLの最後にfalseを渡すと件数を返すようにしています）
+                    try
+                    {
+						//しきい値のチェック
+						DataTable cntDt = BL_SC_MM_05_S01.Select(tmpSearchCondition, CommonData, false);
+						//（作成したテンポラリのSeachConditionを使って、件数を取得します。通常のBLの最後にfalseを渡すと件数を返すようにしています）
 
-					int dataCnt=(int) cntDt.Rows[0]["DATACOUNT"];
-					//（件数を取得）
-					//500件を超える場合はメッセージを表示する。
-					if (dataCnt > MAX_DATA_CNT)
-					{
-// 管理番号K26528 From
-//						if (!ClientScript.IsStartupScriptRegistered("searchCheck"))
-						if (!PageStartupScript.IsScriptRegistered("searchCheck"))
-// 管理番号K26528 To
+						int dataCnt = (int)cntDt.Rows[0]["DATACOUNT"];
+						//（件数を取得）
+						//500件を超える場合はメッセージを表示する。
+						if (dataCnt > MAX_DATA_CNT)
 						{
-							//（Scriptで警告メッセージを表示します）
-							StringBuilder script = new StringBuilder();
-							//警告ダイアログを表示する。
-// 管理番号K26528 From
-//							script.Append("<script  type=\"text/javascript\">\n");
-//							script.Append("<!--\n");
-// 管理番号K26528 To
-							script.Append("	if (confirm(\"");
-							script.Append(AllegroMessage.S00004(dataCnt));
-							script.Append("\"))\n");
-							script.Append("	{\n");
-							script.Append("		document.getElementById(\"SearchButton\").click();\n");
-							//（確認ダイアログで、「はい」が押された場合は、検索ボタン押下を再実行）
-							script.Append("	}\n	else\n	{\n");
-							script.Append("		document.getElementById(\"searchRetryHidden\").value=\"\";\n");
-							script.Append("		document.getElementById(\"PuDateFromText\").focus();\n");
-							//（キャンセルが押下された場合には、リトライ判定のHidden値をクリアして検索先頭項目にフォーカスを遷移する）
-							script.Append("}\n");
-// 管理番号K26528 From
-//							script.Append("-->\n");
-//							script.Append("</script>");
-//							Page.ClientScript.RegisterStartupScript(this.GetType(), "searchCheck",script.ToString());
-							PageStartupScript.RegisterScript(this.GetType(), "searchCheck",script.ToString());
-// 管理番号K26528 To
+							// 管理番号K26528 From
+							//						if (!ClientScript.IsStartupScriptRegistered("searchCheck"))
+							if (!PageStartupScript.IsScriptRegistered("searchCheck"))
+							// 管理番号K26528 To
+							{
+								//（Scriptで警告メッセージを表示します）
+								StringBuilder script = new StringBuilder();
+								//警告ダイアログを表示する。
+								// 管理番号K26528 From
+								//							script.Append("<script  type=\"text/javascript\">\n");
+								//							script.Append("<!--\n");
+								// 管理番号K26528 To
+								script.Append("	if (confirm(\"");
+								script.Append(AllegroMessage.S00004(dataCnt));
+								script.Append("\"))\n");
+								script.Append("	{\n");
+								script.Append("		document.getElementById(\"SearchButton\").click();\n");
+								//（確認ダイアログで、「はい」が押された場合は、検索ボタン押下を再実行）
+								script.Append("	}\n	else\n	{\n");
+								script.Append("		document.getElementById(\"searchRetryHidden\").value=\"\";\n");
+								script.Append("		document.getElementById(\"PuDateFromText\").focus();\n");
+								//（キャンセルが押下された場合には、リトライ判定のHidden値をクリアして検索先頭項目にフォーカスを遷移する）
+								script.Append("}\n");
+								// 管理番号K26528 From
+								//							script.Append("-->\n");
+								//							script.Append("</script>");
+								//							Page.ClientScript.RegisterStartupScript(this.GetType(), "searchCheck",script.ToString());
+								PageStartupScript.RegisterScript(this.GetType(), "searchCheck", script.ToString());
+								// 管理番号K26528 To
+							}
+							//Hidden値設定をリトライに設定
+							searchRetryHidden.Value = "R";
+							//（二度目の検索押下かを判定するHiddenを設定）
+							return;
 						}
-						//Hidden値設定をリトライに設定
-						searchRetryHidden.Value="R";
-						//（二度目の検索押下かを判定するHiddenを設定）
-						return;
+					}
+                    catch (Exception ex)
+                    {
+						setMessageLabel(ex.Message);
 					}
 				}
 
