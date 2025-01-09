@@ -523,7 +523,7 @@
 									SortExpression="[PU_DATE]"
 									HeaderText="仕入日">
  --%>
-								<asp:TemplateColumn HeaderStyle-Width="67px"
+								<%--<asp:TemplateColumn HeaderStyle-Width="67px"
 									ItemStyle-HorizontalAlign="Center"
 									SortExpression="[PU_DATE]"
 									HeaderText="<%$ Resources:Web, SC_CS000806 %>">
@@ -532,6 +532,34 @@
 											Text='<%# ((DateTime) DataBinder.Eval(Container, "DataItem.[PU_DATE]")).ToString("yyyy/MM/dd") %>'>
 										</cc1:EncodeLabel>
 									</ItemTemplate>
+								</asp:TemplateColumn>--%>
+								<asp:TemplateColumn HeaderStyle-Width="93px" ItemStyle-HorizontalAlign="Center">
+									<HeaderTemplate>
+										<span class="lbl_hit_adj"><cc1:EncodeLabel runat="server" Text="仕入日" /><br/>
+											<cc1:CustomLinkButton id="CustomLinkButton1" runat="server"
+												OnCommand="DataGrid1_Sort"
+												CommandName="[CARRIER_CODE]"
+												Text="運送業者">
+											</cc1:CustomLinkButton>
+										</span>
+									</HeaderTemplate>
+									<ItemTemplate>
+										<span class="lbl_hit_adj">
+											<cc1:EncodeLabel id="DetailPuDateLabel" runat="server"
+												Text='<%# ((DateTime) DataBinder.Eval(Container, "DataItem.[PU_DATE]")).ToString("yyyy/MM/dd") %>'>
+											</cc1:EncodeLabel>
+										</span><br/>
+										<span class="lbl_hit_adj">
+											<cc1:EncodeLabel id="DetailCarrierNameLabel" runat="server"
+												Text='<%# (string) DataBinder.Eval(Container, "DataItem.[CARRIER_NAME]") %>'>
+											</cc1:EncodeLabel>
+										</span>
+									</ItemTemplate>
+									<FooterTemplate>
+										<%-- <cc1:EncodeLabel id="TotalKeyGrandTtlNameLabel" Runat="server" Width="105px" Text="(基軸換算金額合計)"> --%>
+										<cc1:EncodeLabel id="EncodeLabel3" Runat="server" Width="150px" Text="<%$ Resources:Web, SC_CS000014 %>">
+										</cc1:EncodeLabel>
+									</FooterTemplate>
 								</asp:TemplateColumn>
 								<asp:TemplateColumn HeaderStyle-Width="157px" ItemStyle-HorizontalAlign="Left">
 									<HeaderTemplate>
