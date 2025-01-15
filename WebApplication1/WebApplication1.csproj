@@ -58,11 +58,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AllegroClassLibrary\AllegroClassLibrary.csproj" />
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.csproj.CopyComplete" />
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.csproj.CoreCompileInputs.cache" />
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.csprojAssemblyReference.cache" />
-    <Content Include="AllegroClassLibrary\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -71,113 +66,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.csproj.FileListAbsolute.txt" />
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.dll" />
-    <Content Include="AllegroClassLibrary\obj\Debug\AllegroClassLibrary.pdb" />
+    <Content Include="Scripts\SC_MM_05_S02.js" />
     <Content Include="SC_MM_05_S01.aspx" />
     <Content Include="SC_MM_05_S02.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
+    <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AllegroClassLibrary\AllegroException.cs" />
-    <Compile Include="AllegroClassLibrary\AllegroLog.cs" />
-    <Compile Include="AllegroClassLibrary\AllegroLogProgram.cs" />
-    <Compile Include="AllegroClassLibrary\AllegroMessage.cs" />
-    <Compile Include="AllegroClassLibrary\AssemblyInfo.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\ConvertDBData.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\ConvertStringData.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\DBAccess.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\DBTimeout.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\DMAccess.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\MNAccess.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\SqlCommandWrapper.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\SqlDataAdapterWrapper.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\SqlString.cs" />
-    <Compile Include="AllegroClassLibrary\BL\SqlClient\WherePhraseBuilder.cs" />
-    <Compile Include="AllegroClassLibrary\CM\MS\RateSaerchOption.cs" />
-    <Compile Include="AllegroClassLibrary\CM\MS\SttleMthdSearchOption.cs" />
-    <Compile Include="AllegroClassLibrary\CommonData.cs" />
-    <Compile Include="AllegroClassLibrary\ComponetModel\Attribute.cs" />
-    <Compile Include="AllegroClassLibrary\DateRange.cs" />
-    <Compile Include="AllegroClassLibrary\DateValidator.cs" />
-    <Compile Include="AllegroClassLibrary\ExceptionLevel.cs" />
-    <Compile Include="AllegroClassLibrary\FI\AP\ApTrnsfrSearchOption.cs" />
-    <Compile Include="AllegroClassLibrary\FI\AR\ArTrnsfrSearchOption.cs" />
-    <Compile Include="AllegroClassLibrary\IF\ForSearch.cs" />
-    <Compile Include="AllegroClassLibrary\IF\IFBase.cs" />
-    <Compile Include="AllegroClassLibrary\IF\NumericChecker.cs" />
-    <Compile Include="AllegroClassLibrary\IF\StringChecker.cs" />
-    <Compile Include="AllegroClassLibrary\MessageLevel.cs" />
-    <Compile Include="AllegroClassLibrary\MultiLanguage.cs" />
-    <Compile Include="AllegroClassLibrary\MultiLanguageReportFont.cs" />
-    <Compile Include="AllegroClassLibrary\obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
-    <Compile Include="AllegroClassLibrary\Report\Enums.cs" />
-    <Compile Include="AllegroClassLibrary\Report\RptCache.cs" />
-    <Compile Include="AllegroClassLibrary\StringFormat.cs" />
-    <Compile Include="AllegroClassLibrary\TraceLevel.cs" />
-    <Compile Include="AllegroClassLibrary\TypeLength.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Configuration\DebugSettings.cs" />
-    <Compile Include="AllegroClassLibrary\Web\ControlFormat.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Enums.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Html\HtmlConverterBase.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Html\HtmlMultilineText.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Html\HtmlNoticeMessage.cs" />
-    <Compile Include="AllegroClassLibrary\Web\Html\HtmlParser.cs" />
-    <Compile Include="AllegroClassLibrary\Web\HttpHandler\FileUploadHandler.cs" />
-    <Compile Include="AllegroClassLibrary\Web\HttpHandler\TerminatePageHandler.cs" />
-    <Compile Include="AllegroClassLibrary\Web\HttpHandler\TokenHandler.cs" />
-    <Compile Include="AllegroClassLibrary\Web\InputPageBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AllegroClassLibrary\Web\NumberBoxPreset.cs" />
-    <Compile Include="AllegroClassLibrary\Web\PageBase.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AllegroClassLibrary\Web\StartupScriptManager.cs" />
-    <Compile Include="AllegroClassLibrary\Web\StateBagDateTime.cs" />
-    <Compile Include="AllegroClassLibrary\Web\TokenManager.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\AllegroControl.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\BaseMenuNode.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\BottomLevelMenuNode.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\ClickableDataGrid.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\ClickablePanel.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CurrencyLabel.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CurrencyList.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomButton.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomCalendar.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomCheckBox.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomDataGrid.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomDropDownList.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomImage.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomImageButton.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomItemPanel.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomLinkButton.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomRadioButton.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomRadioButtonList.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomTextBox.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\CustomTreeView.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\DateBox.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\EncodeLabel.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\Enums.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\FileUploader.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\Header.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\IAllegroContorl.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\IBlurHandleable.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\IEnterKeyDownHandleable.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\IKeyDownHandleable.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\Menu.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\MenuNodeCollection.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\MiddleLevelMenuNode.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\MonthBox.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\NubmerBox.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\RadioButtonSelector.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\StyledButton.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\TabSelector.cs" />
-    <Compile Include="AllegroClassLibrary\Web\WebControls\TimeBox.cs" />
     <Compile Include="BL_SC_MM_05.cs" />
     <Compile Include="BL_SC_MM_05_S01.cs" />
     <Compile Include="BL_SC_MM_05_S02.cs" />
+    <Compile Include="Carrier.cs" />
+    <Compile Include="Emp.cs" />
     <Compile Include="IF_SC_MM_05_S01.cs" />
     <Compile Include="IF_SC_MM_05_S02.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,10 +97,15 @@
     <Compile Include="WebForm1.aspx.designer.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebForm2.aspx.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm2.aspx.designer.cs">
+      <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AllegroClassLibrary\obj\Debug\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

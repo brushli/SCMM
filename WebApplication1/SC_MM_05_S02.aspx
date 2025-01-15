@@ -357,12 +357,12 @@
 													ClientFocusScript="defaultFunctionKeyHeader">
 												</cc1:CustomRadioButton>
 											</td>
-											<td class="bd_item_val_bg"><%-- 納入先 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001673 %>" />
+											<td class="bd_item_val_bg" style="width:230px"><%-- 納入先 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001673 %>" />
 												<cc1:CustomTextBox id="DeliCustCodeText" runat="server"
 													Width="87px" MaxLength="11"
 													ImeMode="inactive"
 													CheckOption="SingleByte"
-													NextControlID="PuNameText"
+													NextControlID="InputEmpCodeText"
 													ClientFocusScript="setNextCtrlTab"
 													ClientChangeScript="makeWithChange"
 													ClientF05Script="openCustCodeWindow"
@@ -372,6 +372,23 @@
 												</cc1:CustomTextBox>
 												<cc1:EncodeLabel id="DeliCustNameLabel" runat="server">
 												</cc1:EncodeLabel>
+											</td>
+											<td class="bd_item_ttl_bg" style="width: 106px;">入力者</td>
+											<td class="bd_item_val_bg">
+												<cc1:CustomTextBox id="InputEmpCodeText" runat="server"
+													Width="80px" MaxLength="10"
+													ImeMode="inactive"
+													CheckOption="SingleByte"
+													NextControlID="PuNameText"
+													ClientFocusScript="defaultFunctionKeyHeader"
+													ClientChangeScript="makeWithChange"
+													ClientF05Script="openEmpCodeWindow"
+													Texttransform="UpperCase"
+													AutoPostBack="true">
+												</cc1:CustomTextBox>
+												<cc1:EncodeLabel id="InputEmpNameLable" runat="server">
+												</cc1:EncodeLabel>
+
 											</td>
 										</tr>
 									</table>
@@ -495,7 +512,7 @@
 																<table class="bd_table_bg grid_container" style="width: 100%;">
 																	<tr>
 																		<td class="bd_item_ttl_bg"><%-- 受渡場所 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001000 %>" /></td>
-																		<td class="bd_item_val_bg" colspan="6">
+																		<td class="bd_item_val_bg" colspan="8">
 																			<cc1:CustomTextBox id="DeliPlaceCodeText" runat="server"
 																				Width="28px"
 																				MaxLength="2"
@@ -545,7 +562,7 @@
 																			</cc1:CustomTextBox>
 																		</td>
 																		<td class="bd_item_ttl_bg" style="width: 157px;"><%-- 市区町村 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000827 %>" /></td>
-																		<td class="bd_item_val_bg" style="width: 342px;">
+																		<td class="bd_item_val_bg" style="width: 342px;" colspan="3">
 																			<cc1:CustomTextBox id="CityText" runat="server"
 																				Width="190px" MaxLength="15"
 																				ImeMode="active"
@@ -567,7 +584,7 @@
 																			</cc1:CustomTextBox>
 																		</td>
 																		<td class="bd_item_ttl_bg"><%-- ビル名 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000222 %>" /></td>
-																		<td class="bd_item_val_bg">
+																		<td class="bd_item_val_bg" colspan="3">
 																			<cc1:CustomTextBox id="Address2Text" runat="server"
 																				Width="330px" MaxLength="30"
 																				ImeMode="active"
@@ -601,7 +618,7 @@
 																			</cc1:CustomTextBox>
 																		</td>
 																		<td class="bd_item_ttl_bg"><%-- 納入先担当者 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS001675 %>" /></td>
-																		<td class="bd_item_val_bg">
+																		<td class="bd_item_val_bg" colspan="3">
 																			<cc1:CustomTextBox id="DeliUserNameText" runat="server"
 																				Width="130px" MaxLength="10"
 																				ImeMode="active"
@@ -613,7 +630,7 @@
 																	</tr>
 																	<tr>
 																		<td class="bd_item_ttl_bg" style="vertical-align: top" rowspan="2"><%-- 支払条件 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000848 %>" /></td>
-																		<td class="bd_item_val_bg" colspan="6">
+																		<td class="bd_item_val_bg" colspan="8">
 																			<cc1:CustomRadioButtonlist id="DtTypeList" runat="server"
 																				ClientFocusScript="defaultFunctionKeyHeader"
 																				ClientClickScript="makeWithChange"
@@ -731,8 +748,20 @@
 																			<cc1:CustomCheckBox id="HoldCheck" runat="server"
 																			ClientChangeScript="makeWithChange"
 																			ClientFocusScript="defaultFunctionKey"
-																			NextControlID="DtNoteText">
+																			NextControlID="CtaxFractionRoundTypeList">
 																			</cc1:CustomCheckBox>
+																		</td>
+																		<td class="bd_item_ttl_bg" style="width: 80px;">消費税端数</td>
+																		<td class="bd_item_val_bg">
+																			<cc1:CustomRadioButtonlist id="CtaxFractionRoundTypeList" runat="server"
+																				ClientFocusScript="defaultFunctionKeyHeader"
+																				ClientClickScript="makeWithChange"
+																				AutoPostBack="true"
+																				NextControlID="DtNoteText">
+																				<asp:ListItem Value="R" Text="四捨五入" />
+																				<asp:ListItem Value="U" Text="切上げ" />
+																				<asp:ListItem Value="C" Text="切捨て" />
+																			</cc1:CustomRadioButtonlist>
 																		</td>
 																	</tr>
 																	<tr>
@@ -744,7 +773,7 @@
 																				ClientFocusScript="defaultFunctionKeyHeader"
 																				ClientChangeScript="makeWithChange"
 																				IsRequiredField="True"
-																				NextControlID="RemarksCodeText">
+																				NextControlID="CarrierCodeDrop">
 																			</cc1:CustomTextBox>
 																		</td>
 																		<td class="bd_item_ttl_bg"><%-- 支払処理日 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000847 %>" /></td>
@@ -752,10 +781,19 @@
 																			<cc1:EncodeLabel id="PaymentDateLabel" runat="server">
 																			</cc1:EncodeLabel>
 																		</td>
+																		<td class="bd_item_ttl_bg" style="width: 65px;">運送業者</td>
+																		<td class="bd_item_val_bg" >
+																			<cc1:CustomDropDownList id="CarrierCodeDrop" runat="server"
+																				Width="100px"
+																				NextControlID="RemarksCodeText"
+																				ClientFocusScript="defaultFunctionKeyHeader"
+																				AutoPostBack="True">
+																			</cc1:CustomDropDownList>
+																		</td>
 																	</tr>
 																	<tr>
 																		<td class="bd_item_ttl_bg"><cc1:EncodeLabel id="RemarksLabel" runat="server"></cc1:EncodeLabel></td>
-																		<td class="bd_item_val_bg" colspan="6">
+																		<td class="bd_item_val_bg" colspan="8">
 																			<cc1:CustomTextBox id="RemarksCodeText" runat="server"
 																				Width="37px" MaxLength="3"
 																				ImeMode="inactive"
@@ -786,7 +824,7 @@
 																		</td>
 																	</tr>
 																	<tr>
-																	<td class="bd_item_ttl_bg"><%-- 仕入計上基準 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000778 %>" /></td>
+																		<td class="bd_item_ttl_bg"><%-- 仕入計上基準 --%><cc1:EncodeLabel runat="server" Text="<%$ Resources:Web, SC_CS000778 %>" /></td>
 																		<td class="bd_item_val_bg" colspan="2">
 																			<cc1:CustomDropDownList id="BookBasisTypeList" runat="server"
 																				ClientFocusScript="defaultFunctionKeyHeader"
@@ -807,7 +845,7 @@
 																		</td>
 																		<td class="bd_item_ttl_bg">
 																		<%-- 仕入先伝票番号 --%><cc1:EncodeLabel id="SuplSlipNoTitleLabel" runat="server" Text="<%$ Resources:Web, SC_CS006219 %>" Visible="false"></cc1:EncodeLabel></td>
-																		<td class="bd_item_val_bg" colspan="3">
+																		<td class="bd_item_val_bg" colspan="5">
 																			<cc1:EncodeLabel id="SuplSlipNoLabel" runat="server" Visible="false"></cc1:EncodeLabel>
 																		</td>
 																	</tr>

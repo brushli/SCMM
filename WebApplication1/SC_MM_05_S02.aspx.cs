@@ -710,7 +710,13 @@ namespace Infocom.Allegro.SC
 // 管理番号K27057 From
 		protected Infocom.Allegro.Web.WebControls.CustomItemPanel CustomItemPanel;
 		protected Infocom.Allegro.Web.WebControls.CustomItemPanel InpCustomItemPanel;
-// 管理番号K27057 To
+		// 管理番号K27057 To
+
+		//2025-01-10 19:31:14 Add by Form
+		protected Infocom.Allegro.Web.WebControls.CustomTextBox InputEmpCodeText;
+		protected Infocom.Allegro.Web.WebControls.CustomDropDownList CarrierCodeDrop;
+		protected Infocom.Allegro.Web.WebControls.CustomRadioButtonList CtaxFractionRoundTypeList;
+		//2025-01-10 19:31:14 Add by To
 		#endregion
 
 		#region Web フォーム デザイナで生成されたコード
@@ -812,7 +818,9 @@ namespace Infocom.Allegro.SC
 // 管理番号 K24789 To
 // 管理番号 K25667 From
 			this.AttachmentFileButton.Click += this.AttachmentFileButton_Click;
-// 管理番号 K25667 To
+			// 管理番号 K25667 To
+
+			this.InputEmpCodeText.TextChanged += new System.EventHandler(this.InputEmpCodeText_TextChanged);
 		}
 		#endregion
 
@@ -971,7 +979,7 @@ namespace Infocom.Allegro.SC
 // 管理番号 K25680 To
 							if (this.paramType == ParamCodeType.MOD)
 							{
-// 管理番号 K25679 From
+// 管理番号 K25679 From			
 								// グループ間取引伝票で修正許可フラグが許可でない場合
 								if (rowData.SuplSlipNo.Length != 0 && !correctAllowFlg)
 								{
@@ -1059,7 +1067,18 @@ namespace Infocom.Allegro.SC
 									{
 										this.paramType = ParamCodeType.VIEW;
 									}
-								}
+								}								
+							}
+							this.InputEmpCodeText.Text = rowData.InputEmpCode;
+							this.InputEmpNameLable.Text = string.Empty;
+							CarrierCodeDrop.SelectedValue = rowData.CtaxFractionRoundType; 
+							CtaxFractionRoundTypeList.SelectedValue = rowData.CtaxFractionRoundType;
+							this.CarrierCodeDrop.SelectedValue = rowData.CarrierCode;
+                            if (this.paramType == ParamCodeType.VIEW)
+                            {
+								InputEmpCodeText.Enable = false;
+								CtaxFractionRoundTypeList.Enable = false;
+								CarrierCodeDrop.Enable = false;
 							}
 						}
 						else
@@ -1134,7 +1153,42 @@ namespace Infocom.Allegro.SC
 // 管理番号 K25667 From
 						// 添付資料情報のセッションを新規作成する
 						this.attachmentFiles = new CM.WF.IF_CM_WF_AttachmentFiles();
-// 管理番号 K25667 To
+                        // 管理番号 K25667 To
+                        if (this.paramType==ParamCodeType.NEW)
+                        {
+							this.InputEmpCodeText.Text = this.UserCode;
+							this.InputEmpNameLable.Text = this.UserName;
+							this.CtaxFractionRoundTypeList.SelectedIndex = 0;
+							this.CarrierCodeDrop.SelectedIndex = 0;
+						}
+                        else if (this.paramType == ParamCodeType.COPY)
+                        {
+							this.InputEmpCodeText.Text = this.UserCode;
+							this.InputEmpNameLable.Text = this.UserName;
+                            if (rowData!=null)
+                            {
+								this.CtaxFractionRoundTypeList.SelectedValue = rowData.CtaxFractionRoundType;
+								this.CarrierCodeDrop.SelectedValue = rowData.CarrierCode;
+							}
+						}
+						else if (this.paramType == ParamCodeType.COPY_PO)
+						{
+							this.InputEmpCodeText.Text = this.UserCode;
+							this.InputEmpNameLable.Text = this.UserName;
+							if (rowData != null)
+							{
+								//·消费税尾数：从订购发票的采购处取得并设定消费税尾数。 TODO
+								//this.CtaxFractionRoundTypeList.SelectedValue = rowData.CtaxFractionRoundType;
+								this.CarrierCodeDrop.SelectedIndex = 0;
+							}
+						}
+						else if (this.paramType == ParamCodeType.COPY_RC)
+						{
+							this.InputEmpCodeText.Text = this.UserCode;
+							this.InputEmpNameLable.Text = this.UserName;
+							this.CarrierCodeDrop.SelectedIndex = 0;
+							
+						}
 						break;
 				}
 
@@ -1226,8 +1280,7 @@ namespace Infocom.Allegro.SC
 			}
 			CustomItemPanel.SetEvent(CustomItemPanel_TextChanged);
 // 管理番号K27057 To
-		}
-
+		}		
 		private void Page_PreRender(object sender, System.EventArgs e)
 		{
 			string focusControl = this.CloseButton.ID;
@@ -2413,6 +2466,8 @@ namespace Infocom.Allegro.SC
 			this.AdminItem2Hidden.Value				= string.Empty;
 			this.AdminItem3Hidden.Value				= string.Empty;
 			// 管理番号 B13798 To
+
+			
 		}
 
 		private void setTabCondition()
@@ -3215,6 +3270,13 @@ namespace Infocom.Allegro.SC
 // 管理番号K27057 From
 			CustomItem.SetCustomItem(CustomItemPanel, rowData.CustomItemHead, rowData.PuDate, paramType == ParamCodeType.MOD || paramType == ParamCodeType.VIEW);
 // 管理番号K27057 To
+			if (rowData.InputEmpCode.Length > 0)
+			{
+				string inputEmpShortName = string.Empty;
+				Emp.IsExists(this.CommonData, rowData.InputEmpCode, out inputEmpShortName, false);
+				this.InputEmpCodeText.Text = rowData.InputEmpCode;
+				this.InputEmpCodeLabel.Text = inputEmpShortName;
+			}
 		}
 
 		private void setRowData()
@@ -3515,7 +3577,10 @@ namespace Infocom.Allegro.SC
 // 管理番号 K25679 From
 			rowData.PoAdminNo		= this.PoAdminNoText.Text.Trim();
 // 管理番号 K25679 To
-				return;
+			rowData.InputEmpCode = this.InputEmpCodeText.Text.Trim();
+			rowData.CtaxFractionRoundType = this.CtaxFractionRoundTypeList.SelectedValue;
+			rowData.CarrierCode = this.CarrierCodeDrop.SelectedValue;
+			return;
 		}
 
 // 管理番号K27057 From
@@ -3657,6 +3722,7 @@ namespace Infocom.Allegro.SC
 
 			string suplCode	   = this.SuplCodeText.Text.Trim();
 			string suplName	   = string.Empty;
+			string suplCtaxFractionRoundType = string.Empty;
 			string compareDate = DateValidator.IsDate(this.PuDateText.Text) ? this.PuDateText.Text : todayDate;
 // 管理番号 K24789 From
 			string dealDate = DateValidator.IsDate(this.DealDateText.Text) ? this.DealDateText.Text : todayDate;
@@ -3669,10 +3735,10 @@ namespace Infocom.Allegro.SC
 
 			if (suplCode.Length > 0)
 			{
-				if (Supl.IsExistsSupl(this.CommonData, suplCode, this.CompanyCodeLength, out suplName, compareDate, false, "D", false))
+				if (Supl.IsExistsSupl(this.CommonData, suplCode, this.CompanyCodeLength, out suplName,out suplCtaxFractionRoundType, compareDate, false, "D", false))
 				{
 					this.SuplNameText.Text = rowData.SuplShortName = suplName;
-
+					this.CtaxFractionRoundTypeList.SelectedValue = suplCtaxFractionRoundType;
 					// 支払条件の取得
 					setDtData(true);
 
@@ -4016,9 +4082,30 @@ namespace Infocom.Allegro.SC
 			}
 			FocusControl(focusControl, sender);
 		}
-//管理番号 B24292 From
+		private void InputEmpCodeText_TextChanged(object sender, System.EventArgs e)
+		{
+			string inputEmpCode = this.InputEmpCodeText.Text.Trim();
+			string inputEmpShortName = string.Empty;
+			string focusControl = string.Empty;
+			if (inputEmpCode.Length > 0)
+			{
+				if (Emp.IsExists(this.CommonData, inputEmpCode, out inputEmpShortName, false))
+				{
+					this.InputEmpNameLable.Text = inputEmpShortName;
+					focusControl = this.InputEmpCodeText.NextControlID;
+				}
+				else
+				{
+					this.InputEmpNameLable.Test = string.Empty;
+					focusControl = this.InputEmpCodeText.ID;
+				}
+			}
+			FocusControl(focusControl, sender);
+		}
 
-//管理番号 B24292 コメント削除
+		//管理番号 B24292 From
+
+		//管理番号 B24292 コメント削除
 
 		private void DeptCodeText_TextChanged(object sender, System.EventArgs e)
 		{
@@ -5463,6 +5550,17 @@ namespace Infocom.Allegro.SC
 				deptCodeChange(sender);
 				return;
 			}
+
+            if (this.InputEmpCodeText.Text.Length>0)
+            {
+				string inputEmpName = string.Empty;
+				if (!Emp.IsExists(this.CommonData, InputEmpCodeText.Text, out inputEmpName, false))
+				{
+					setMessageLabel(HtmlMessage(AllegroMessage.S20005("入力者"), MessageLevel.Warning));
+					return;
+				}
+				
+			}
 // 管理番号 B24292 To
 // 管理番号 K24789 From
 			if (UpdateFlg.Value.ToString() == string.Empty)
@@ -6180,7 +6278,9 @@ namespace Infocom.Allegro.SC
 			// 帳簿控除理由 SM3：仕入
 			BookDeductionReason.SetDataSource(this.CommonData, this.InpBookDeductionReasonCodeList, "SM3");
 			this.InpBookDeductionReasonCodeList.DataBind();
-// 管理番号K27525 To
+
+			Carrier.SetDataSource(this.CommonData, this.CarrierCodeDrop);
+			CarrierCodeDrop.Items.Insert(0, new ListItem("", ""));
 		}
 
 // 管理番号K27062 From

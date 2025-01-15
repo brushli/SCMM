@@ -116,7 +116,7 @@ namespace Infocom.Allegro.SC
 				sb.Append("END AS [GRAND_TTL], ");
 // 管理番号 B22516 From
 				sb.Append("[PU].[DT_TYPE], ");
-				sb.Append("[CARRIER].[CARRIER_NAME],[CARRIER].[CARRIER_CODE], ");
+				sb.Append("[NEWEST_CAR].[CARRIER_NAME],[NEWEST_CAR].[CARRIER_CODE], ");
 				// 管理番号 B22516 To
 				// 管理番号 B23181 From
 				if (searchCondition.ApModuleFlg)
@@ -250,7 +250,16 @@ namespace Infocom.Allegro.SC
 			sb.Append("AS [PU]");
 // 管理番号 K22270 From
 			sb.Append(" WITH (NOLOCK) ");
-// 管理番号 K22270 To
+			//加入运输
+			sb.Append(" LEFT OUTER JOIN ");
+			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_ADD]"));
+			sb.Append("AS [PUA] WITH (NOLOCK) ON ");
+			sb.Append("[PUA].[PU_NO] = [PU].[PU_NO]");
+			sb.Append(" LEFT OUTER JOIN ");
+			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[CARRIER]"));
+			sb.Append(" AS [NEWEST_CAR] WITH (NOLOCK) ON ");
+			sb.Append("[NEWEST_CAR].[CARRIER_CODE] = [NEWEST_PUA].[CARRIER_CODE]");		
+			// 管理番号 K22270 To
 			sb.Append(" INNER JOIN ");
 			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_DTIL]"));
 // 管理番号 K22270 From
@@ -442,7 +451,8 @@ namespace Infocom.Allegro.SC
 
 			//検索条件の追加
 			WherePhraseBuilder wpb = new WherePhraseBuilder();
-// 管理番号K27058 From
+			wpb.AddFilter("[NEWEST_PUA].[CARRIER_CODE]", SearchOperator.Equal, searchCondition.CarrierCode);
+			// 管理番号K27058 From
 			// 仕入計上基準区分
 			if (!searchCondition.BookBasisType.Equals("0"))
 			{
@@ -609,15 +619,7 @@ namespace Infocom.Allegro.SC
 				sb.Append("AS [NEWEST_PUD] WITH (NOLOCK) ON ");
 // 管理番号 K22270 To
 				sb.Append("[NEWEST_PUD].[PU_NO] = [NEWEST_PU].[PU_NO]");
-				//加入运输
-				sb.Append(" LEFT OUTER JOIN ");
-				sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_ADD]"));
-				sb.Append("AS [NEWEST_PUA] WITH (NOLOCK) ON ");
-				sb.Append("[NEWEST_PUA].[PU_NO] = [NEWEST_PU].[PU_NO]");
-				sb.Append(" LEFT OUTER JOIN [R_1_1_0_SC].[dbo].[CARRIER]");
-				sb.Append("AS [NEWEST_CAR] WITH (NOLOCK) ON ");
-				sb.Append("[NEWEST_CAR].[CARRIER_CODE] = [NEWEST_PUA].[CARRIER_CODE]");
-				wpb.AddFilter("[NEWEST_PUA].[CARRIER_CODE]", SearchOperator.Equal, searchCondition.CarrierCode);
+				
 				sb.Append(" LEFT OUTER JOIN ");
 				sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PO]"));
 // 管理番号 K22270 From
@@ -809,9 +811,17 @@ namespace Infocom.Allegro.SC
 
 			try
             {
+				string filePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.txt");
+                try
+                {
+					System.IO.File.WriteAllText(filePath,sb.ToSqlPString().toString());
+				}
+                catch 
+                {
+                }
 				da = new SqlDataAdapterWrapper(sb.ToSqlPString(), cn);    // 管理番号K27230
 			}
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception(sb.ToSqlPString().ToString());
             }
@@ -839,7 +849,14 @@ namespace Infocom.Allegro.SC
 // 管理番号 B24028 To
 			da.SelectCommand.Parameters.Add("@PO_DATE_FROM",SqlDbType.DateTime).Value	= ConvertDBData.ToDateTime(searchCondition.PoDateFrom);
 			da.SelectCommand.Parameters.Add("@PO_DATE_TO",SqlDbType.DateTime).Value		= ConvertDBData.ToDateTime(searchCondition.PoDateTo);
-			da.Fill(dt);
+            try
+            {
+				da.Fill(dt);
+			}
+            catch (Exception ex)
+            {
+				throw new Exception(ex.Message + ex.StackTrace);
+            }
 			return dt;
 		}
 		/// <summary>
