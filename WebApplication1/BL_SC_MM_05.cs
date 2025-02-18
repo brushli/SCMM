@@ -1165,7 +1165,11 @@ namespace Infocom.Allegro.SC
 			sb.Append("     ELSE '1'"                                                             );
 			sb.Append(" END                                       AS [IS_RCPT_EXECUTE]"           );
 			sb.Append(",'R'                                       AS [ROW_STATE]"                 );
-// 管理番号K27057 From
+			sb.Append(",[PUA].[INPUT_EMP_CODE]                    AS [INPUT_EMP_CODE]");
+			sb.Append(",[EMP].[NAME]							  AS [INPUT_EMP_NAME]");
+			sb.Append(",[PUA].[CTAX_FRACTION_ROUND_TYPE]          AS [CTAX_FRACTION_ROUND_TYPE]");
+			sb.Append(",[CAR].[CARRIER_CODE]                      AS [CARRIER_CODE]");
+			// 管理番号K27057 From
 			BL_CM_MS_CustomItem.SetSqlColumns(commonData, BL_CM_MS_CustomItem.InputDetail, "SCMM05_PU", keyColumn.OverseasFlg == "0" ? BL_CM_MS_CustomItem.Domestic : BL_CM_MS_CustomItem.Overseas, sb, BL_CM_MS_CustomItem.MasterNotClear, "PD", "CUSTOM_ITEM_TAG", "@PU_DATE", null, true);
 // 管理番号K27057 To
 
@@ -1176,7 +1180,18 @@ namespace Infocom.Allegro.SC
 			sb.Append(" INNER JOIN ");
 			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_DTIL]")).Append(" AS [PD]");
 			sb.Append(" ON [PU].[PU_NO] = [PD].[PU_NO]");
-// 管理番号 B15710 From
+//課題です2 From   
+			//仕入追加
+			sb.Append(" LEFT JOIN ");
+			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PU_ADD]")).Append(" AS [PUA]");
+			sb.Append(" ON [PU].[PU_NO] = [PUA].[PU_NO]");
+			//入力者
+			sb.Append(" LEFT JOIN ");
+			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[EMP]")).Append(" AS [EMP]");
+			sb.Append(" ON [PUA].[INPUT_EMP_CODE] = [EMP].[INPUT_EMP_CODE]");
+//課題です2 To
+
+			// 管理番号 B15710 From
 			//商品
 			sb.Append(" INNER JOIN ");
 			sb.Append(DBAccess.GetDBSchema(commonData.CompCode, UnitID.SC, "[PROD]")).Append(" AS [PROD]");
@@ -8585,12 +8600,20 @@ WHERE [RCPT].[RCPT_NO] = @SLIP_NO
 			BL_CM_MS_CustomItem.SetSqlParameterCollection(commonData, BL_CM_MS_CustomItem.InputHead, "SCMM05_PU", validRowData.OverseasFlg == "0" ? BL_CM_MS_CustomItem.Domestic : BL_CM_MS_CustomItem.Overseas, cm.Parameters);
 // 管理番号K27057 To
 // 管理番号K27154 From
-			cm.Parameters.Add("@DEAL_TYPE_CODE"               , SqlDbType.NVarChar, 3    );	// 取引区分コード
-// 管理番号K27154 To
-			cm.Parameters["@PU_NO"].Direction              = ParameterDirection.Output;
+			cm.Parameters.Add("@DEAL_TYPE_CODE"               , SqlDbType.NVarChar, 3    ); // 取引区分コード
+                                                                                            // 管理番号K27154 To
+
+            #region 課題です 2 From
+			cm.Parameters.Add("@CTAX_FRACTION_ROUND_TYPE", SqlDbType.NVarChar, 1);    // 消費税端数区分
+			cm.Parameters.Add("@CARRIER_CODE", SqlDbType.NVarChar, 3);    // 運送業者コード
+            #endregion 課題です 2 To
+
+            cm.Parameters["@PU_NO"].Direction              = ParameterDirection.Output;
 			cm.Parameters["@RET"].Direction                = ParameterDirection.Output;
 			cm.Parameters["@RESULT_INFORMATION"].Direction = ParameterDirection.Output;
-
+			#region 課題です 2 From
+			cm.Parameters["@CARRIER_CODE"].Value = ConvertDBData.ToNVarChar(validRowData.CarrierCode);
+			 #endregion 課題です 2 To
 			cm.Parameters["@RCPT_CALL_FLG"].Value                = ConvertDBData.ToNVarChar("0");
 			cm.Parameters["@ORG_PU_NO"].Value                    = ConvertDBData.ToNVarChar(validRowData.PuNo);
 			cm.Parameters["@PU_NAME"].Value                      = ConvertDBData.ToNVarChar(validRowData.PuName);

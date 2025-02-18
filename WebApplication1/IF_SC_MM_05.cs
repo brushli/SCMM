@@ -408,8 +408,23 @@ namespace Infocom.Allegro.SC
 		protected IF_CM_MS_CustomItem customItemDtil = new IF_CM_MS_CustomItem();
 // 管理番号K27057 To
 // 管理番号K27154 From
-		protected string dealTypeCode				= string.Empty;		// 取引区分コード
-// 管理番号K27154 To
+		protected string dealTypeCode				= string.Empty;     // 取引区分コード
+																		// 管理番号K27154 To
+
+		//课题2 From
+		/// <summary>
+		/// 入力者名
+		/// </summary>
+		protected string inputEmpName = string.Empty;
+		/// <summary>
+		/// 消费税小数舍入区分
+		/// </summary>
+		protected string ctaxFractionRoundType = string.Empty;
+		/// <summary>
+		/// 承运人代码
+		/// </summary>
+		protected string carrierCode = string.Empty;
+		//课题2 To
 		#endregion
 
 		#region Constructors
@@ -491,9 +506,14 @@ namespace Infocom.Allegro.SC
 			dt.Columns["TAXINFO_CHG_FLG"].DefaultValue = "0";
 // 管理番号 K24789 To
 // 管理番号 K25322 From
-			dt.Columns.Add("LOT_STOCK_VALUATION_FLG"	, typeof(string));		//ロット別在庫評価フラグ
+			dt.Columns.Add("LOT_STOCK_VALUATION_FLG"	, typeof(string));      //ロット別在庫評価フラグ
 // 管理番号 K25322 To
-
+//課題です 2 From
+			dt.Columns.Add("INPUT_EMP_NAME", typeof(string));               //入力者
+			dt.Columns.Add("INPUT_EMP_CODE", typeof(string));				//入力者
+			dt.Columns.Add("CTAX_FRACTION_ROUND_TYPE", typeof(string));      //消費税端数区分
+			dt.Columns.Add("CARRIER_CODE", typeof(string));					//運送業者コード
+//課題です 2 From
 			dt.Columns["PU_LINE_ID"].AutoIncrement = true;
 			dt.PrimaryKey = new DataColumn[] {dt.Columns["PU_LINE_ID"]};
 
@@ -1734,12 +1754,38 @@ namespace Infocom.Allegro.SC
 			// 取引区分
 			set {dealTypeCode = ValidateString(MultiLanguage.Get("SC_CS006354"), value, true, 3, CheckOption.SingleByte);}
 		}
-// 管理番号K27154 To
+		// 管理番号K27154 To
+
+		//课题2 Form
+		/// <summary>
+		/// 入力者名
+		/// </summary>
+		public virtual string InputEmpName
+		{
+			get { return inputEmpName; }
+			set { inputEmpName = value; }
+		}
+		/// <summary>
+		/// 消費税端数丸め区分
+		/// </summary>
+		public virtual string CtaxFractionRoundType
+		{
+			get { return ctaxFractionRoundType; }
+			set { ctaxFractionRoundType = value; }
+		}
+		/// <summary>
+		/// 運送業者コード
+		/// </summary>
+		public virtual string CarrierCode
+		{
+			get { return carrierCode; }
+			set { carrierCode = value; }
+		}
+		//课题2 To
 		#endregion
 
 		#region メソッド
 		#endregion
-
 	}
 
 	[Serializable()]
@@ -4404,6 +4450,20 @@ namespace Infocom.Allegro.SC
 		protected string	curDigit					= string.Empty;		// 通貨.通貨小数桁数
 		protected byte		priceDecimalDigit			= (byte)0;
 // 管理番号 K25647 To
+		//课题2 From
+		/// <summary>
+		/// 入力者名
+		/// </summary>
+		protected string inputEmpCode = string.Empty;
+		/// <summary>
+		/// 消费税小数舍入区分
+		/// </summary>
+		protected string ctaxFractionRoundType = string.Empty;
+		/// <summary>
+		/// 承运人代码
+		/// </summary>
+		protected string carrierCode = string.Empty;
+		//课题2 To
 		#endregion
 
 		#region Properties PU_DTIL
@@ -4738,9 +4798,36 @@ namespace Infocom.Allegro.SC
 			get { return priceDecimalDigit; }
 			set { priceDecimalDigit = value; }
 		}
-// 管理番号 K25647 To
+		// 管理番号 K25647 To
 		#endregion
-
+		#region Properties PU_ADD
+		//课题2 From 
+		/// <summary>
+		/// 入力者名
+		/// </summary>
+		public virtual string InputEmpCode
+		{
+			get { return inputEmpCode; }
+			set { inputEmpCode = value; }
+		}
+		/// <summary>
+		/// 消費税端数丸め区分
+		/// </summary>
+		public virtual string CtaxFractionRoundType
+		{
+			get { return ctaxFractionRoundType; }
+			set { ctaxFractionRoundType = value; }
+		}
+		/// <summary>
+		/// 運送業者コード
+		/// </summary>
+		public virtual string CarrierCode
+		{
+			get { return carrierCode; }
+			set { carrierCode = value; }
+		}
+		//课题2 To
+		#endregion
 		#region Methods
 		public virtual void SetPuLineId(string value)
 		{

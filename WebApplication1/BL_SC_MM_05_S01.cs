@@ -868,7 +868,7 @@ namespace Infocom.Allegro.SC
 		public static DataTable GetCarriers(CommonData commonData, Web.WebControls.CustomDropDownList control)
 		{
 			StringBuilder sb = new StringBuilder();
-			sb.Append("SELECT CARRIER_CODE,CARRIER_NAME FROM [R_1_1_0_SC].[dbo].[CARRIER]");
+			sb.Append("SELECT CARRIER_CODE,CARRIER_NAME FROM [R_1_1_0_SC].[dbo].[CARRIER] order by CARRIER_CODE");
 			SqlConnection cn = new SqlConnection(DBAccess.GetConnectionString(commonData));
 			DataTable dt=new DataTable ();
 			cn.Open();
@@ -880,7 +880,7 @@ namespace Infocom.Allegro.SC
 				control.DataSource = dt;
 				control.DataValueField = "CARRIER_CODE";
 				control.DataTextField = "CARRIER_NAME";
-				control.DataBind();
+				control.DataBind();                
 			}
 			finally
 			{

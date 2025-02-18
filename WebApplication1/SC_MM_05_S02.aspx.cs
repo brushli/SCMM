@@ -3269,14 +3269,16 @@ namespace Infocom.Allegro.SC
 			setDataGridProperty(rowData.Dt);
 // 管理番号K27057 From
 			CustomItem.SetCustomItem(CustomItemPanel, rowData.CustomItemHead, rowData.PuDate, paramType == ParamCodeType.MOD || paramType == ParamCodeType.VIEW);
-// 管理番号K27057 To
+			// 管理番号K27057 To
+// 課題です 2 From
 			if (rowData.InputEmpCode.Length > 0)
 			{
 				string inputEmpShortName = string.Empty;
 				Emp.IsExists(this.CommonData, rowData.InputEmpCode, out inputEmpShortName, false);
 				this.InputEmpCodeText.Text = rowData.InputEmpCode;
-				this.InputEmpCodeLabel.Text = inputEmpShortName;
+				this.InputEmpNameLable.Text = inputEmpShortName;
 			}
+// 課題です 2 From
 		}
 
 		private void setRowData()
@@ -3722,7 +3724,10 @@ namespace Infocom.Allegro.SC
 
 			string suplCode	   = this.SuplCodeText.Text.Trim();
 			string suplName	   = string.Empty;
+//課題です 2 From
 			string suplCtaxFractionRoundType = string.Empty;
+			string buildType = string.Empty;
+//課題です2 to
 			string compareDate = DateValidator.IsDate(this.PuDateText.Text) ? this.PuDateText.Text : todayDate;
 // 管理番号 K24789 From
 			string dealDate = DateValidator.IsDate(this.DealDateText.Text) ? this.DealDateText.Text : todayDate;
@@ -3735,10 +3740,13 @@ namespace Infocom.Allegro.SC
 
 			if (suplCode.Length > 0)
 			{
-				if (Supl.IsExistsSupl(this.CommonData, suplCode, this.CompanyCodeLength, out suplName,out suplCtaxFractionRoundType, compareDate, false, "D", false))
+				if (Supl.IsExistsSupl(this.CommonData, suplCode, this.CompanyCodeLength, out suplName,compareDate, false, "D", false))
 				{
+//課題です 2 From
+					Supl.GetPymtCtaxInfo(this.CommonData, suplCode, CompanyCodeLength, out buildType, out suplCtaxFractionRoundType);
 					this.SuplNameText.Text = rowData.SuplShortName = suplName;
 					this.CtaxFractionRoundTypeList.SelectedValue = suplCtaxFractionRoundType;
+//課題です To
 					// 支払条件の取得
 					setDtData(true);
 

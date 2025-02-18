@@ -824,6 +824,28 @@ function openEmpCodeWindow(sender) {
 	);
 // 管理番号K26528 To
 }
+// F5 参照(入力者)
+function openInputEmpCodeWindow(sender) {
+	// 管理番号K26528 From
+	//	if (callEmpSearchWindow(sender, document.all["EmpNameLabel"])) {
+	//		if (g_beforeValue != sender.value) {
+	//			document.all["__ReturnValue"].value = "Emp";
+	//			sender.onchange();
+	//		}
+	//	}
+	callEmpSearchWindow(sender, document.getElementById("InputEmpNameLable"));
+	lazyTask.add(
+		function (lazyArg) {
+			if (lazyArg) {
+				if (g_beforeValue != sender.value) {
+					document.getElementById("__ReturnValue").value = "InputEmp";
+				}
+			}
+		}
+	);
+	// 管理番号K26528 To
+}
+
 // F5 参照(部門)
 function openDeptCodeWindow(sender) {
 	var includeLowerDept = "";

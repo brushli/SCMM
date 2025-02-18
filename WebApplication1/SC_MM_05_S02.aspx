@@ -382,7 +382,7 @@
 													NextControlID="PuNameText"
 													ClientFocusScript="defaultFunctionKeyHeader"
 													ClientChangeScript="makeWithChange"
-													ClientF05Script="openEmpCodeWindow"
+													ClientF05Script="openInputEmpCodeWindow"
 													Texttransform="UpperCase"
 													AutoPostBack="true">
 												</cc1:CustomTextBox>

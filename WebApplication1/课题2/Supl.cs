@@ -632,7 +632,43 @@ namespace Infocom.Allegro.CM.MS
 		{
 			return IsExists(commonData, suplCombinationCode, compCodeLength, out suplShortName, date, allSupl, "S", overSeasType, fabConsignSuplFlg);
 		}
-
+		/// <summary>
+		/// 仕入先の存在チェック及び仕入先略名の取得を行います。
+		/// </summary>
+		/// <param name="commonData">
+		/// 共通データ
+		/// </param>
+		/// <param name="suplCombinationCode">
+		/// 仕入先コードと仕入先枝番の連結した文字列
+		/// </param>
+		/// <param name="compCodeLength">
+		/// 取引先コード固定桁数
+		/// </param>
+		/// <param name="suplShortName">
+		/// 仕入先略名
+		/// </param>
+		/// <param name="roundType">
+		/// 消費税端数丸め区分
+		/// </param>
+		/// <param name="date">
+		/// 基準日
+		/// </param>
+		/// <param name="allSupl">
+		/// 無効も含める場合：true、それ以外の場合：false
+		/// </param>
+		/// <param name="overSeasType">
+		/// 国内・海外区分（国内の場合："D"、海外の場合："O"、全ての場合：""）
+		/// </param>
+		/// <param name="fabConsignSuplFlg">
+		/// 製造委託先フラグ（製造委託先の場合：true、それ以外の場合：false）
+		/// </param>
+		/// <returns>
+		/// 存在有無
+		/// </returns>
+		public static bool IsExistsSupl(CommonData commonData, string suplCombinationCode, byte compCodeLength, out string suplShortName,out string roundType, string date, bool allSupl, string overSeasType, bool fabConsignSuplFlg)
+		{
+			return IsExists(commonData, suplCombinationCode, compCodeLength, out suplShortName, date, allSupl, "S", overSeasType, fabConsignSuplFlg);
+		}
 		/// <summary>
 		/// 仕入先の存在チェック及び仕入先情報を取得します。
 		/// </summary>
